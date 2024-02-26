@@ -49,13 +49,5 @@ public class App {
 
         scanner.close();
 
-        // int x = 15, y = 9;
-        // if (x > y)
-        // y += x;
-        // else
-        // x++;
-        // y -= x;
-        // System.out.println("x = " + x + "; y = " + y);
-
     }
 }
