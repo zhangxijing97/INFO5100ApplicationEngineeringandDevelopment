@@ -1,6 +1,7 @@
 package edu.neu.mgen;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 // import java.time.LocalDate;
@@ -15,63 +16,75 @@ import java.time.Duration;
 
 public class App {
 
-    public static int[][] multiplyMatrices(int[][] A, int[][] B) {
-        int rowsA = A.length;
-        int colsA = A[0].length; // Same as rowsB
-        int colsB = B[0].length;
-
-        // Initialize the result matrix with zeros
-        int[][] result = new int[rowsA][colsB];
-
-        // Perform matrix multiplication
-        for (int i = 0; i < rowsA; i++) {
-            for (int j = 0; j < colsB; j++) {
-                for (int k = 0; k < colsA; k++) {
-                    result[i][j] += A[i][k] * B[k][j];
-                }
+    private static String arrayToString(int[] array) {
+        StringBuilder sb = new StringBuilder("{ ");
+        for (int i = 0; i < array.length; i++) {
+            sb.append(array[i]);
+            if (i < array.length - 1) {
+                sb.append(", ");
             }
         }
-
-        return result;
+        sb.append(" }");
+        return sb.toString();
     }
 
-    public static void printMatrix(int[][] matrix) {
-        for (int[] row : matrix) {
-            for (int element : row) {
-                System.out.print(element + " ");
+    private static List<String> switchFirstLastLetters(List<String> names) {
+        List<String> switchedNames = new ArrayList<>();
+        for (String name : names) {
+            if (name.length() > 1) {
+                // Switch the letters and adjust the capitalization
+                String switched = name.substring(name.length() - 1).toUpperCase() +
+                        name.substring(1, name.length() - 1) +
+                        name.substring(0, 1).toLowerCase();
+                switchedNames.add(switched);
+            } else {
+                // Handle single-letter names or empty strings, if any
+                switchedNames.add(name.toUpperCase()); // Assuming we want to capitalize single letters
             }
-            System.out.println();
         }
+        return switchedNames;
+    }
+
+    private static String namesToString(List<String> names) {
+        return "{ " + String.join(", ", names) + " }";
     }
 
     public static void main(String[] args) {
 
-        // Define matrices A and B
-        int[][] A = { { 2, 3, 4 }, { 3, 4, 5 } }; // 2 rows 3 columns
-        int[][] B = { { 1, 2 }, { 3, 4 }, { 5, 6 } }; // 3 rows 2 columns
+        // Lab 1 part 1 - Array
+        int[] x = { 1, 3, 5, 7, 9 };
+        int[] y = { 2, 4, 6, 8, 10 };
 
-        // System.out.println(A[0]);
-        // for (int i = 0; i < A[0].length; i++) {
-        // System.out.println(A[0][i] + " ");
-        // }
+        // Initialize array z of length 5
+        int[] z = new int[5];
 
-        // [I@1dbd16a6
-        // [: This indicates that the object is an array.
-        // I: This denotes the type of the array.
-        // @: This is simply a separator in the representation.
-        // 1dbd16a6: This is the hashcode of the array object, doesn't convey anything
-        // meaningful contents of the array.
-
-        // Check if multiplication is possible
-        if (A[0].length != B.length) {
-            System.out.println("The matrices cannot be multiplied.");
-        } else {
-            // Perform multiplication
-            int[][] result = multiplyMatrices(A, B);
-            // Display the result
-            printMatrix(result);
+        // Populate array z with the max of x and y at each index
+        for (int i = 0; i < 5; i++) {
+            z[i] = Math.max(x[i], y[i]);
         }
 
+        // Print the arrays
+        System.out.println("Array x = " + arrayToString(x));
+        System.out.println("Array y = " + arrayToString(y));
+        System.out.println("Array z = x + y = " + arrayToString(z));
+
+        // Lab 1 part 2 - ArrayList
+        List<String> names = new ArrayList<>();
+        names.add("Alice");
+        names.add("Bob");
+        names.add("Carol");
+        names.add("Dave");
+        names.add("Eve");
+
+        // Print the original list of names
+        System.out.println("Names = " + namesToString(names));
+
+        // Switch the first and last letters of each name and maintain the
+        // capitalization
+        List<String> switchedNames = switchFirstLastLetters(names);
+
+        // Print the modified list of names
+        System.out.println("Names (switched) = " + namesToString(switchedNames));
     }
 
 }
