@@ -1,12 +1,17 @@
 package edu.neu.mgen;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
 import java.time.LocalDateTime;
 import java.time.Duration;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+
+import java.util.function.Consumer;
 
 /**
  *
@@ -49,25 +54,25 @@ public class App {
             System.out.println("Caught an exception: " + e.getMessage());
         }
 
-        // Define the email pattern
-        String emailPattern = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$";
+        // // Define the email pattern
+        // String emailPattern = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$";
         
-        // Compile the pattern
-        Pattern pattern = Pattern.compile(emailPattern);
+        // // Compile the pattern
+        // Pattern pattern = Pattern.compile(emailPattern);
         
-        // Emails to validate
-        String[] emails = {"username@example.com", "user.name@example.com", "user-name@sub.example.org",
-                           "username@example", "user@.com.my", "user@%*.com", "user..1234@yahoo.com"};
+        // // Emails to validate
+        // String[] emails = {"username@example.com", "user.name@example.com", "user-name@sub.example.org",
+        //                    "username@example", "user@.com.my", "user@%*.com", "user..1234@yahoo.com"};
 
-        for (String email : emails) {
-            Matcher matcher = pattern.matcher(email);
-            boolean matchFound = matcher.matches();
+        // for (String email : emails) {
+        //     Matcher matcher = pattern.matcher(email);
+        //     boolean matchFound = matcher.matches();
             
-            if (matchFound) {
-                System.out.println(email + " is a valid email address.");
-            } else {
-                System.out.println(email + " is not a valid email address.");
-            }
+        //     if (matchFound) {
+        //         System.out.println(email + " is a valid email address.");
+        //     } else {
+        //         System.out.println(email + " is not a valid email address.");
+        //     }
         // }
 
         // Pattern pattern = Pattern.compile(" Northeastern", 
@@ -80,6 +85,46 @@ public class App {
         //     System.out.println("Match not found");
         // }
 
+        Pattern pattern = Pattern.compile("[^abc]");
+        Matcher matcher = pattern.matcher("d");
+        boolean matchFound = matcher.find();
+        if (matchFound) {
+            System.out.println("Match found");
+        } else {
+            System.out.println("Match not found");
+        }
+
+        // Thread
+        long startTime = System.currentTimeMillis();
+        
+        // Creating threads
+        MyThread thread1 = new MyThread("Thread 1");
+        MyThread thread2 = new MyThread("Thread 2");
+
+        // Running threads
+        thread1.run();
+        thread2.run();
+
+        long endTime = System.currentTimeMillis();
+
+        // Print execution time
+        System.out.println("Total execution time: " + (endTime - startTime) + " milliseconds");
+        
+        // Comparing execution time of threads
+        System.out.println(thread1.getName() + " execution time: " + thread1.getExecutionTime() + " milliseconds");
+        System.out.println(thread2.getName() + " execution time: " + thread2.getExecutionTime() + " milliseconds");
+
+        // Lambda expression to implement the functional interface
+        MyFunctionalInterface myLambda = (int a, int b) -> a + b;
+
+        // Using the lambda expression to add two numbers
+        int result = myLambda.operation(5, 3);
+        System.out.println("Result: " + result);
+        names.forEach(printName);
+    }
+
+    interface MyFunctionalInterface {
+        int operation(int a, int b);
     }
 
 }
