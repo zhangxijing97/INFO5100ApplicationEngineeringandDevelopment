@@ -1,10 +1,13 @@
 # HW to Chapters 13 “Connect Java Program to Database” (as in lectures)
 
 Non-programming Assignment:<br>
+
 1) What is JDBC?<br>
+
 JDBC stands for Java Database Connectivity. It is an API (Application Programming Interface) that allows Java programs to interact with databases. JDBC provides methods and interfaces to connect to a database, send queries, and retrieve results.<br>
 
 2) How to write information to a file?<br>
+
 To connect a Java program to a database using JDBC, you need to follow these steps:<br>
 
 Step 1: Load and register the database driver using Class.forName().<br>
