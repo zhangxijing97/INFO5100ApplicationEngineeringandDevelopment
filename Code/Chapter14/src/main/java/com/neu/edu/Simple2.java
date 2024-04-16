@@ -2,6 +2,7 @@ package com.neu.edu;
 
 import javax.swing.*;
 
+// Button
 public class Simple2 extends JFrame {
     JFrame f;
 

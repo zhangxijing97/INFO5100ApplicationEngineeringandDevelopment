@@ -39,5 +39,4 @@ public class ButtonExample {
         frame.setVisible(true);
     }
 }
-
 ```

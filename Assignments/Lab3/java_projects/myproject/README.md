@@ -1,1 +1,0 @@
-# HW to Chapters 7 “Loops” (as in lectures)
