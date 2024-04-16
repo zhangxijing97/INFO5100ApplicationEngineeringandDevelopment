@@ -1,12 +1,12 @@
 package com.neu.edu;
 
 /**
- * Hello world!
+ * Lab 3 - GUI
  *
  */
 public class App {
     public static void main(String[] args) {
-        LoginWindow loginWindow = new LoginWindow();
-        // username: admin, password: admin
+        ColorCircleGUI gui = new ColorCircleGUI();
+        gui.setVisible(true);
     }
 }
